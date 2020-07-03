@@ -18,7 +18,7 @@ class Api::V1::CategoriesController < ApplicationController
     def create
         @category = Category.new(category_params)
         if @category.save
-            render json: @category, include: :items, status: 200
+            render json: @category, include: :todos, status: 200
         else 
             render json: { errors: @store.errors.full_messages}, status: 400
         end 
@@ -27,7 +27,7 @@ class Api::V1::CategoriesController < ApplicationController
     def update 
         @category = Category.find_by(id: params[:id])
         if @category.update(category_params)
-            render json: @category, include: :items, status: 200
+            render json: @category, include: :todos, status: 200
         else 
             render json: { errors: @store.errors.full_messages}, status: 400
         end
@@ -35,7 +35,7 @@ class Api::V1::CategoriesController < ApplicationController
 
     def destroy
         @category = Category.find_by(id: params[:id])
-        @category.items.delete_all
+        @category.todos.delete_all
         @category.destroy
         render json: @category, status: 200
     end

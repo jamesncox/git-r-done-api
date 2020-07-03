@@ -1,4 +1,4 @@
-class Item < ApplicationRecord
+class Todo < ApplicationRecord
     belongs_to :category
     has_one :user, through: :categories
 

@@ -4,13 +4,13 @@ Rails.application.routes.draw do
 
       resources :users, only: [:index, :create, :destroy]
       resources :categories
-      resources :items
+      resources :todos
 
        # fetch to custom Store route for specific user
-       get '/user_categories/:id' => 'stores#user_stores'
+       get '/user_categories/:id' => 'categories#user_categories'
 
-       # fetch to custom Item route for specific user
-       get '/user_items/:id' => 'items#user_items'
+       # fetch to custom Todo route for specific user
+       get '/user_todos/:id' => 'todos#user_todos'
 
        # sessions CSRF-TOKEN route
        get '/auth_check' => 'sessions#auth_check'
