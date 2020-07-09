@@ -17,7 +17,7 @@ class Api::V1::TodosController < ApplicationController
 
     def create 
         @todo = Todo.new(todo_params)
-        @store = Store.find_by(id: params[:category_id])
+        @category = Category.find_by(id: params[:category_id])
         if @todo.save
             render json: @todo, status: 200
         else

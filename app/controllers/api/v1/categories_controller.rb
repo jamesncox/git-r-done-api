@@ -1,13 +1,13 @@
 class Api::V1::CategoriesController < ApplicationController
     def index
         @categories = Category.all 
-        render json: @stores, except: [:created_at, :updated_at], status: 200
+        render json: @categories, except: [:created_at, :updated_at], status: 200
     end
 
     def user_categories
         @user = User.find_by(id: params[:id])
         @categories = @user.categories 
-        render json: @stores, except: [:created_at, :updated_at], status: 200
+        render json: @categories, except: [:created_at, :updated_at], status: 200
     end
 
     def show
