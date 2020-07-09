@@ -20,7 +20,7 @@ class Api::V1::CategoriesController < ApplicationController
         if @category.save
             render json: @category, include: :todos, status: 200
         else 
-            render json: { errors: @store.errors.full_messages}, status: 400
+            render json: { errors: @category.errors.full_messages}, status: 400
         end 
     end
 
@@ -29,7 +29,7 @@ class Api::V1::CategoriesController < ApplicationController
         if @category.update(category_params)
             render json: @category, include: :todos, status: 200
         else 
-            render json: { errors: @store.errors.full_messages}, status: 400
+            render json: { errors: @category.errors.full_messages}, status: 400
         end
     end 
 
@@ -42,6 +42,6 @@ class Api::V1::CategoriesController < ApplicationController
 
     private
         def category_params
-            params.require(:store).permit(:name, :color, :user_id)
+            params.require(:category).permit(:name, :color, :user_id)
         end 
 end
