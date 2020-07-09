@@ -3,11 +3,11 @@ Rails.application.routes.draw do
     namespace :v1 do
 
       resources :users, only: [:index, :create, :destroy]
-      resources :categories
+      resources :lists
       resources :todos
 
        # fetch to custom Store route for specific user
-       get '/user_categories/:id' => 'categories#user_categories'
+       get '/user_lists/:id' => 'lists#user_lists'
 
        # fetch to custom Todo route for specific user
        get '/user_todos/:id' => 'todos#user_todos'

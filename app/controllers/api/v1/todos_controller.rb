@@ -12,12 +12,12 @@ class Api::V1::TodosController < ApplicationController
 
     def show
         @todo = Todo.find_by(id: params[:id])
-        render json: @todo, include: :category, status: 200
+        render json: @todo, include: :list, status: 200
     end
 
     def create 
         @todo = Todo.new(todo_params)
-        @category = Category.find_by(id: params[:category_id])
+        @list = List.find_by(id: params[:list_id])
         if @todo.save
             render json: @todo, status: 200
         else
@@ -42,6 +42,6 @@ class Api::V1::TodosController < ApplicationController
 
     private 
     def todo_params
-        params.require(:todo).permit(:text, :priority, :complete, :category_id)
+        params.require(:todo).permit(:text, :priority, :complete, :list_id)
     end
 end
