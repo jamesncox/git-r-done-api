@@ -3,5 +3,4 @@ class List < ApplicationRecord
     has_many :todos 
 
     validates :category, presence: { message: "%{value} name of list is missing"  }, uniqueness: { scope: :user_id, message: "%{value} Is Already Created" }
-    validates :color, presence: { message: "%{value} of list category not selected" }
 end
